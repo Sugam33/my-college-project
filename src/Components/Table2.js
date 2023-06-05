@@ -23,7 +23,7 @@ const Rows = (data, i, users, OnEditFunction) => {
           </td>
           <td className={`${Text}`}>{data._id ? data._id : "2R75T8"}</td>
           <td className={`${Text}`}>
-            {data.createAt ? data.createAt : "12, Jan 2023"}
+            {data.createAt ? data.createAt : "dummy date"}
           </td>
           <td className={`${Text}`}>{data.fullName}</td>
           <td className={`${Text}`}>{data.email}</td>
@@ -38,7 +38,7 @@ const Rows = (data, i, users, OnEditFunction) => {
         <>
           <td className={`${Text} font-bold`}>2R75T8</td>
           <td className={`${Text}`}>
-            {data.createAt ? data.createAt : "12, Jan 2023"}
+            {data.createAt ? data.createAt : "dummy date"}
           </td>
           <td className={`${Text}`}>{data.title}</td>
           <td className={`${Text} float-right flex-rows gap-2`}>
