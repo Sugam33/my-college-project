@@ -3,8 +3,8 @@ import Aos from 'aos';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import ScrollOnTop from './ScrollOnTop';
-import AboutUs from './Screens/AboutUs';
-import ContactUs from './Screens/ContactUs';
+// import AboutUs from './Screens/AboutUs';
+// import ContactUs from './Screens/ContactUs';
 import AddMovie from './Screens/Dashboard/Admin/AddMovie';
 import Categories from './Screens/Dashboard/Admin/Categories';
 import Dashboard from './Screens/Dashboard/Admin/Dashboard';
@@ -29,8 +29,8 @@ function App() {
       <ScrollOnTop>
         <Routes>
           <Route path="/" element={<HomeScreen />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/contact-us" element={<ContactUs />} />
+         {/* <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/contact-us" element={<ContactUs />} /> */}
           <Route path="/movies" element={<MoviesPage />} />
           <Route path="/movie/:id" element={<SingleMovie />} />
           <Route path="/watch/:id" element={<WatchPage />} />
