@@ -11,13 +11,13 @@ function Profile() {
         <Uploder />
         <Input
           label="FullName"
-          placeholder="Netflixo React Tailwind"
+          placeholder="Full Name"
           type="text"
           bg={true}
         />
         <Input
           label="Email"
-          placeholder="netflixo@gmail.com"
+          placeholder="email"
           type="email"
           bg={true}
         />
