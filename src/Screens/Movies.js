@@ -3,7 +3,7 @@ import Filters from "../Components/Filters";
 import Layout from "../Layout/Layout";
 import Movie from "../Components/Movie";
 import { Movies } from "../Data/MovieData";
-import { CgSpinner } from "react-icons/cg";
+// import { CgSpinner } from "react-icons/cg";
 
 function MoviesPage() {
   const maxPage = 10;
@@ -31,7 +31,7 @@ function MoviesPage() {
             onClick={HandleLoadingMore}
             className="flex-rows gap-3 text-white py-3 px-8 rounded font-semibold border-2 border-subMain"
           >
-            Load More <CgSpinner className="animate-spin" />
+            Load More 
           </button>
         </div>
       </div>

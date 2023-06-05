@@ -66,8 +66,8 @@ function MovieRates({ movie }) {
           </button>
         </div>
         {/* REVIWERS */}
-        <div className="col-span-3 flex flex-col gap-6">
-          <h3 className="text-xl text-text font-semibold">Reviews (56)</h3>
+        {/* <div className="col-span-3 flex flex-col gap-6">
+          <h3 className="text-xl text-text font-semibold">Reviews</h3>
           <div className="w-full flex flex-col bg-main gap-6 rounded-lg md:p-12 p-6 h-header overflow-y-scroll">
             {UsersData.map((user, i) => (
               <div className="md:grid flex flex-col w-full grid-cols-12 gap-6 bg-dry p-4 border border-gray-800 rounded-lg">
@@ -84,14 +84,14 @@ function MovieRates({ movie }) {
                     {user?.message}
                   </p>
                 </div>
-                {/* rates */}
+             // rates
                 <div className="col-span-3 flex-rows border-l border-border text-xs gap-1 text-star">
                   <Rating value={user?.rate} />
                 </div>
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
