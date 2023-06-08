@@ -29,7 +29,6 @@ const UserSchema = mongoose.Schema({
            ref: "Movie", 
         },
     ],
-  
     },
 {
     timestamps: true,
