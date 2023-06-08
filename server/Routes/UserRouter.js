@@ -1,10 +1,15 @@
 import express from 'express';
-import { loginUser, registerUser } from '../Controllers/UserController.js';
+import { loginUser, registerUser, updateUserProfile } from '../Controllers/UserController.js';
+import { protect } from '../middlewares/Auth.js';
 
 const router = express.Router();
 
+// ******** PUBLIC ROUTES *******
 router.post("/", registerUser);
 router.post("/login", loginUser);
+
+// ******* PROTECTED ROUTES ******
+router.put("/", protect, updateUserProfile);
 
 
 
