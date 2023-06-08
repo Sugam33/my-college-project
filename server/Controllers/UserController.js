@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import User from "../Models/UserModels.js";
 import bcrypt from "bcryptjs";
+import { generateToken } from "../middlewares/Auth.js";
 
 // @desc Register user
 // @route POST /api/users/
@@ -27,6 +28,22 @@ const registerUser = asyncHandler(async (req, res) => {
            password: hashedPassword,
             image,
         });
+
+        // if user created successfully, send user data and token to client 
+        if(user) {
+            res.status(201).json({
+                _id: user._id,
+                fullName: user.fullName,
+                email: user.email,
+                image: user.image,
+                isAdmin: user.isAdmin,
+                token: generateToken(user._id),
+            });
+        }
+        else{
+            res.status(400);
+            throw new Error("Invalid data of user");
+        }
 
     } catch(error){
 
