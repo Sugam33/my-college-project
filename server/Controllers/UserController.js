@@ -46,9 +46,38 @@ const registerUser = asyncHandler(async (req, res) => {
         }
 
     } catch(error){
-
+        res.status(400).json({
+            message: error.message
+        });
     }
 });
 
-export { registerUser };
+// Login user
+const loginUser = asyncHandler(async(req, res) => {
+    const {email, password } = req.body;
+    try{
+        // find user in DB
+        const user = await User.findOne({ email });
+        // if user exists, then compare password with hashed password then send user data to client
+         if(user && (await bcrypt.compare(password, user.password))){
+            res.json({
+                _id: user._id,
+                fullName: user.fullName,
+                email: user.email,
+                image: user.image,
+                isAdmin: user.isAdmin,
+                token: generateToken(user._id),
+            });
+            // if user not found or password not match then send error message
+         }
+         else{
+            res.status(401);
+            throw new Error("Invalid email or password");
+         }
+    } catch(error){
+        res.status(400).json({message: error.message});
+    }
+});
+
+export { registerUser, loginUser};
 
