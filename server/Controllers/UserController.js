@@ -79,5 +79,15 @@ const loginUser = asyncHandler(async(req, res) => {
     }
 });
 
+// ********  PRIVATE CONTROLLERS *******
+
+// Update User Profile
+
+
+const updateUserProfile = asyncHandler(async(req, res) => {
+    const { fullName, email, password, image } = req.body;
+});
+ 
+
 export { registerUser, loginUser};
 
