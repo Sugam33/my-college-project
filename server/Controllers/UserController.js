@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import User from "../Models/UserModels";
+import User from "../Models/UserModels.js";
 
 // @desc Register user
 // @route POST /api/users/
