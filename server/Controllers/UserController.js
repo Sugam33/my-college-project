@@ -3,10 +3,7 @@ import User from "../Models/UserModels.js";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../middlewares/Auth.js";
 
-// @desc Register user
-// @route POST /api/users/
-// @access Public
-
+//  Register user
 const registerUser = asyncHandler(async (req, res) => {
     const {fullName, email, password, image} = req.body
     try{
@@ -82,8 +79,6 @@ const loginUser = asyncHandler(async(req, res) => {
 // ********  PRIVATE CONTROLLERS *******
 
 // Update User Profile
-
-
 const updateUserProfile = asyncHandler(async(req, res) => {
     const { fullName, email, image } = req.body;
     try{
@@ -118,6 +113,54 @@ const updateUserProfile = asyncHandler(async(req, res) => {
     }
 });
  
+// Delete User profile
+const deleteUserProfile = asyncHandler(async (req, res) => {
+  try {
+    // find user
+    const user = await User.findById(req.user._id);
+    // if user cha vane delete user database bata
+    if (user) {
+        // admin delete garna mildaina so throw error 
+      if (user.isAdmin) {
+        res.status(400);
+        throw new Error("Can't delete admin");
+      }
+      // natra user lai delete gardiney
+      await user.deleteOne();
+      res.json({ message: "User deleted successfully" });
+    } else {
+      res.status(404);
+      throw new Error("User not found");
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
-export { registerUser, loginUser, updateUserProfile};
+// Change user password
+const changeUserPassword = asyncHandler(async(req, res) => {
+    const { oldPassword, newPassword } = req.body;
+    try{
+        // find user in DB
+        const user = await User.findById(req.user._id);
+        // user exist garcha vane user ko password update garney ani save garney database ma 
+         if(user && (await bcrypt.compare(oldPassword, user.password))){
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(newPassword, salt);
+            user.password = hashedPassword;
+            await user.save();
+            res.json({message : "Password changed!!"});
+         }
+         else{
+            res.status(401);
+            throw new Error("Invalid Old Password");
+         }
+    } catch(error){
+        res.status(400).json({message: error.message});
+    }
+});
+
+
+
+export { registerUser, loginUser, updateUserProfile, deleteUserProfile, changeUserPassword };
 
