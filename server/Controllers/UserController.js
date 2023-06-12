@@ -229,7 +229,45 @@ const deleteLikedMovies = asyncHandler(async(req, res) => {
     }
 });
 
+// ************** ADMIN CONTROLLERS ******************
 
+// GET all users
+// route - GET /api/users
+// yo chai admin ko access
+const getUsers = asyncHandler(async(req, res) => {
+    try{
+        // find all users in DB
+        const users = await User.find({});
+        res.json(users);
+    } catch(error){
+        res.status(400).json({message: error.message});
+    }
+});
+
+// DELETE user
+// route - DELETE /api/users/:id
+const deleteUser = asyncHandler(async(req, res) => {
+    try{
+        const user = await User.findById(req.params.id);
+        // if user exists delete user from DB
+        if(user){
+            // if user is admin throw error
+            if(user.isAdmin) {
+                res.status(400);
+                throw new Error("Cant delete admin");
+            }
+            // else delete user from Db
+            await user.deleteOne();
+            res.json({message: "User deleted Successfully"});
+        }
+        else{
+            res.status(404);
+            throw new Error("User not found");
+        }
+    } catch(error){
+        res.status(400).json({message: error.message});
+    }
+});
 
 export { 
     registerUser,
@@ -239,6 +277,9 @@ export {
     changeUserPassword, 
     getLikedMovies, 
     addLikedMovie,
-    deleteLikedMovies
+    deleteLikedMovies,
+    getUsers,
+    deleteUser,
+
  };
 
