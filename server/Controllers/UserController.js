@@ -179,7 +179,45 @@ const getLikedMovies = asyncHandler(async(req, res) => {
     }
 });
 
+// add movie to liked movies
+// yesko route chai /api/users/favorites
+const addLikedMovie = asyncHandler(async(req, res) => {
+    const { movieId } = req.body;
+    try{
+        // find user in DB
+        const user = await User.findById(req.user._id);
+        // user cha vane movie lai liked movies ma rakhney ani db ma save garney
+        if(user){
+            // movie already liked cha vane 
+            // if movie already liked cha vane send error message
+            if(user.likedMovies.includes(movieId)) {
+                res.status(400);
+                throw new Error("Movie already liked");
+            }
+            // else add movie to liked movies and save in DB
+            user.likedMovies.push(movieId);
+            await user.save();
+            res.json(user.likedMovies);
+        }
+        // else send error message
+        else{
+            res.status(404);
+            throw new Error("Movie not found");
+        }
+    } catch(error){
+        res.status(400).json({ message: error.message });
+    }
+});
 
 
-export { registerUser, loginUser, updateUserProfile, deleteUserProfile, changeUserPassword, getLikedMovies };
+
+export { 
+    registerUser,
+    loginUser,
+    updateUserProfile,
+    deleteUserProfile, 
+    changeUserPassword, 
+    getLikedMovies, 
+    addLikedMovie,
+ };
 
