@@ -160,7 +160,26 @@ const changeUserPassword = asyncHandler(async(req, res) => {
     }
 });
 
+// get all liked movies
+// yesko route chai /api/users/favorites
+const getLikedMovies = asyncHandler(async(req, res) => {
+    try{
+        // find user in db
+        const user = await User.findById(req.user._id).populate("LikedMovies");
+        // if user exists send liked movies to client
+        if(user){
+            res.json(user.likedMovies);
+        }
+        else{
+            res.status(404);
+            throw new Error("User not found");
+        }
+    } catch(error){
+        res.status(400).json({message: error.message});
+    }
+});
 
 
-export { registerUser, loginUser, updateUserProfile, deleteUserProfile, changeUserPassword };
+
+export { registerUser, loginUser, updateUserProfile, deleteUserProfile, changeUserPassword, getLikedMovies };
 

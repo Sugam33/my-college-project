@@ -1,5 +1,5 @@
 import express from 'express';
-import { changeUserPassword, deleteUserProfile, loginUser, registerUser, updateUserProfile } from '../Controllers/UserController.js';
+import { changeUserPassword, deleteUserProfile, getLikedMovies, loginUser, registerUser, updateUserProfile } from '../Controllers/UserController.js';
 import { protect } from '../middlewares/Auth.js';
 
 const router = express.Router();
@@ -12,7 +12,7 @@ router.post("/login", loginUser);
 router.put("/", protect, updateUserProfile);
 router.delete("/", protect, deleteUserProfile);
 router.put("/password", protect, changeUserPassword);
-
+router.get("/favorites", protect, getLikedMovies);
 
 
 export default router;
