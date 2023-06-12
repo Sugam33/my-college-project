@@ -180,7 +180,7 @@ const getLikedMovies = asyncHandler(async(req, res) => {
 });
 
 // add movie to liked movies
-// yesko route chai /api/users/favorites
+// yesko route chai POST /api/users/favorites
 const addLikedMovie = asyncHandler(async(req, res) => {
     const { movieId } = req.body;
     try{
@@ -209,6 +209,26 @@ const addLikedMovie = asyncHandler(async(req, res) => {
     }
 });
 
+// Delete all liked movies
+// yesko route DELETE /api/users/favorites
+const deleteLikedMovies = asyncHandler(async(req, res) => {
+    try{
+        const user = await User.findById(req.user._id);
+        // user cha vane delete liked movies and save in DB
+        if(user){
+            user.likedMovies = [];
+            await user.save();
+            res.json({message : "All liked movies deleted successfully"});
+        }
+        else{
+            res.status(404);
+            throw new Error("User not found");
+        }
+    } catch(error){
+        res.status(400).json({message: error.message});
+    }
+});
+
 
 
 export { 
@@ -219,5 +239,6 @@ export {
     changeUserPassword, 
     getLikedMovies, 
     addLikedMovie,
+    deleteLikedMovies
  };
 
