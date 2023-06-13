@@ -11,9 +11,13 @@ function NavBar() {
       <div className="bg-main shadow-md sticky top-0 z-20">
         <div className="container mx-auto py-6 px-2 lg:grid gap-10 grid-cols-7 justify-between items-center">
           {/* Logo */}
-          <div className="col-span-1 lg:block hidden" style={{color : "red", fontSize : 20} }>
+          <div className="col-span-1 lg:block hidden">
             <Link to="/">
-             Nepflix
+              <img
+                src="/images/neplixpopcorn.png"
+                alt="logo"
+                className="w-full h-20 object-contain"
+              />
             </Link>
           </div>
           {/* search Form */}
@@ -34,6 +38,9 @@ function NavBar() {
           </div>
           {/* menus */}
           <div className="col-span-3 font-medium text-sm hidden xl:gap-14 2xl:gap-20 justify-between lg:flex xl:justify-end items-center">
+          <NavLink to="/" className={Hover}>
+              Home
+            </NavLink>
             <NavLink to="/movies" className={Hover}>
               Browse Movies
             </NavLink>
