@@ -1,4 +1,4 @@
-export const Movies = [
+export const MoviesData = [
   {
     name: 'Army Of  The Dead',
     desc: 'Lorem ipsum dolor sit amet, consecetur adipiscing elseddo eiusmod There are many variations of passages of lorem Ipsum available, but the majority have suffered alteration.',

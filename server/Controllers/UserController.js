@@ -165,7 +165,7 @@ const changeUserPassword = asyncHandler(async(req, res) => {
 const getLikedMovies = asyncHandler(async(req, res) => {
     try{
         // find user in db
-        const user = await User.findById(req.user._id).populate("LikedMovies");
+        const user = await User.findById(req.user._id).populate("likedMovies");
         // if user exists send liked movies to client
         if(user){
             res.json(user.likedMovies);
@@ -218,7 +218,7 @@ const deleteLikedMovies = asyncHandler(async(req, res) => {
         if(user){
             user.likedMovies = [];
             await user.save();
-            res.json({message : "All liked movies deleted successfully"});
+            res.json({message : "All favorite movies deleted successfully"});
         }
         else{
             res.status(404);
