@@ -92,6 +92,52 @@ const getRandomMovies = asyncHandler(async(req, res) => {
     }
 });
 
+// ***************** PRIVATE CONTROLLERS **************** //
+const createMovieReview = asyncHandler(async(req, res) => {
+    const { rating, comment } = req.body;
+    try{
+        // find movie by id in database
+        const movie = await Movie.findById(req.params.id);
+
+        if(movie){
+            // check if movie is already reviewed, if yes send error message
+            const alreadyReviewed = movie.reviews.find((r) => r.userId.toString() === req.user._id.toString());
+            if(alreadyReviewed){
+                res.status(400);
+                throw new Error("You already reviewed this movie");
+            }
+            // else create a new review
+            const review = {
+                userName: req.user.fullName,
+                userId: req.user._id,
+                userImage: req.user.image,
+                rating: Number(rating),
+                comment,
+            }
+            // push the new review to the reviews array
+            movie.reviews.push(review);
+            // increase the number of reviews
+            movie.numberOfReviews = movie.reviews.length;
+
+            // calculate the new rate
+            movie.rate = movie.reviews.reduce((acc, item) => item.rating + acc, 0) / movie.reviews.length;
+
+            // save movie in database
+            await movie.save();
+            // send new movie to client
+            res.status(201).json({
+                message: "Review added",
+            });
+        }
+        else{
+            res.status(404);
+            throw new Error("Movie not found");
+        }
+    }
+    catch(error){
+        res.status(400).json({ message: error.message });
+    }
+});
 
 
-export { importMovies, getMovies, getMovieById, getTopRatedMovies, getRandomMovies };
+export { importMovies, getMovies, getMovieById, getTopRatedMovies, getRandomMovies, createMovieReview };
