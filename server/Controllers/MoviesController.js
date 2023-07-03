@@ -66,4 +66,21 @@ const getMovieById = asyncHandler(async(req, res) => {
     }
 });
 
-export { importMovies, getMovies, getMovieById };
+// get top rated movies,   route - GET /api/movies/rated/top
+const getTopRatedMovies = asyncHandler(async(req, res) => {
+    try{
+        // find top rated movies
+        const movies = await Movie.find({}).sort({ rate: -1 })
+        // send top rated movies to client
+        res.json(movies);
+    }
+    catch(error){
+        res.status(400).json({ message: error.message });
+    }
+});
+
+// get random movies
+
+
+
+export { importMovies, getMovies, getMovieById, getTopRatedMovies };
