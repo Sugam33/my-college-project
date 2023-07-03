@@ -15,8 +15,8 @@ router.get("/random/all", moviesController.getRandomMovies);
 
 
 
-// ******* PROTECTED ROUTES ******
-
+// ******* PRIVATE ROUTES **********
+router.post("/:id/reviews", protect, moviesController.createMovieReview);
 
 // ************** ADMIN ROUTES **************
 

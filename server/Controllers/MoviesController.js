@@ -93,6 +93,8 @@ const getRandomMovies = asyncHandler(async(req, res) => {
 });
 
 // ***************** PRIVATE CONTROLLERS **************** //
+
+// create movie review,   route - POST /api/movies/:id/reviews
 const createMovieReview = asyncHandler(async(req, res) => {
     const { rating, comment } = req.body;
     try{
