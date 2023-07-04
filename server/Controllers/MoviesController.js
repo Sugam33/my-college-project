@@ -228,6 +228,56 @@ const deleteAllMovies = asyncHandler(async(req, res) => {
      }
 });
 
+// Create movie,   route - POST /api/movies
+const createMovie = asyncHandler(async(req, res) => {
+    try{
+        const{
+            name,
+            desc,
+            image,
+            titleImage,
+            rate,
+            numberOfReviews,
+            category,
+            time,
+            language,
+            year,
+            video,
+            casts
+        } = req.body;
+
+       // create a new movie
+       const movie = new Movie({
+        name,
+        desc,
+        image,
+        titleImage,
+        rate,
+        numberOfReviews,
+        category,
+        time,
+        language,
+        year,
+        video,
+        casts,
+        userId: req.user._id,
+       });
+
+       // save movie in database
+       if(movie){
+        const createdMovie = await movie.save();
+        res.status(201).json(createdMovie);
+       }
+       else{
+        res.status(400);
+        throw new Error("Invalid movie data");
+       }
+    }
+    catch(error){
+        res.status(400).json({ message: error.message });
+    }
+});
+
 
 export { 
     importMovies, 
@@ -238,4 +288,6 @@ export {
     createMovieReview, 
     updateMovie,
     deleteMovie,
-    deleteAllMovies, };
+    deleteAllMovies,
+    createMovie, 
+};
