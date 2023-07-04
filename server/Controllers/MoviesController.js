@@ -92,7 +92,7 @@ const getRandomMovies = asyncHandler(async(req, res) => {
     }
 });
 
-// ***************** PRIVATE CONTROLLERS **************** //
+// ***************** PRIVATE CONTROLLERS **************** 
 
 // create movie review,   route - POST /api/movies/:id/reviews
 const createMovieReview = asyncHandler(async(req, res) => {
@@ -141,5 +141,101 @@ const createMovieReview = asyncHandler(async(req, res) => {
     }
 });
 
+// ***************** ADMIN CONTROLLERS **************** 
 
-export { importMovies, getMovies, getMovieById, getTopRatedMovies, getRandomMovies, createMovieReview };
+// Update movie,   route - PUT /api/movies/:id
+const updateMovie = asyncHandler(async(req, res) => {
+    try{
+        const{
+            name,
+            desc,
+            image,
+            titleImage,
+            rate,
+            numberOfReviews,
+            category,
+            time,
+            language,
+            year,
+            video,
+            casts
+        } = req.body;
+
+        // find movie by id in database
+        const movie = await Movie.findById(req.params.id);
+
+        if(movie){
+            // update movie data
+            movie.name = name || movie.name;
+            movie.desc = desc || movie.desc;
+            movie.image = image || movie.image;
+            movie.titleImage = titleImage || movie.titleImage;
+            movie.rate = rate || movie.rate;
+            movie.numberOfReviews = numberOfReviews || movie.numberOfReviews;
+            movie.category = category || movie.category;
+            movie.time = time || movie.time;
+            movie.language = language || movie.language;
+            movie.year = year || movie.year;
+            movie.video = video || movie.video;
+            movie.casts = casts || movie.casts;
+
+            // save movie in database
+
+            const updatedMovie = await movie.save();
+            // send updated data to client
+            res.status(201).json(updatedMovie);
+        }
+        else{
+            res.status(404);
+            throw new Error("Movie not found");
+        }
+    }
+    catch(error){
+        res.status(400).json({ message: error.message });
+    }
+});
+
+// Delete movie,   route - DELETE /api/movies/:id
+const deleteMovie = asyncHandler(async(req, res) => {
+    try{
+        // find movie by id in database
+        const movie = await Movie.findById(req.params.id);
+        // if movie found, then delete it
+        if(movie){
+            await movie.deleteOne();
+            res.json({ message: "Movie removed" });
+        }
+        // if movie not found, send 404 error
+        else{
+            res.status(404);
+            throw new Error("Movie not found");
+        }
+    }
+    catch(error){
+        res.status(400).json({ message: error.message });
+    }
+});
+
+// Delete all movies,   route - DELETE /api/movies
+const deleteAllMovies = asyncHandler(async(req, res) => {
+    try{
+        // delete all movies
+        await Movie.deleteMany({});
+        res.json({ message: "All movies removed" });
+    }
+     catch(error){
+        res.status(400).json({ message: error.message });
+     }
+});
+
+
+export { 
+    importMovies, 
+    getMovies,
+    getMovieById, 
+    getTopRatedMovies,
+    getRandomMovies, 
+    createMovieReview, 
+    updateMovie,
+    deleteMovie,
+    deleteAllMovies, };
