@@ -21,10 +21,13 @@ import Register from './Screens/Register';
 import SingleMovie from './Screens/SingleMovie';
 import WatchPage from './Screens/WatchPage';
 import DrawerContext from './Context/DrawerContext';
+import ToastContainer from './Components/Notifications/ToastContainer';
 
 function App() {
   Aos.init();
   return (
+    <>
+    <ToastContainer />
     <DrawerContext>
       <ScrollOnTop>
         <Routes>
@@ -48,6 +51,8 @@ function App() {
         </Routes>
       </ScrollOnTop>
     </DrawerContext>
+    </>
+    
   );
 }
 
