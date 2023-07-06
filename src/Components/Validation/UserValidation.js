@@ -20,3 +20,5 @@ const registerValidation = yup.object().shape({
     .max(20, "Full name must be less than 20 characters")
     .matches(/^[a-zA-Z ]*$/, "Full name must only contain letters"),
 });
+
+export { loginValidation, registerValidation };
