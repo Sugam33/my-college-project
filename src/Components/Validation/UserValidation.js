@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 // login validation
-const loginValidation = yup.object().shape({
+const LoginValidation = yup.object().shape({
     email: yup.string().email().required("Email is required").trim(),
     password: yup.string().required("Password is required")
     .min(6, "Password must be at least 6 characters")
@@ -10,7 +10,7 @@ const loginValidation = yup.object().shape({
 });
 
 // register validation
-const registerValidation = yup.object().shape({
+const RegisterValidation = yup.object().shape({
     email: yup.string().email().required("Email is required").trim(),
     password: yup.string().required("Password is required")
     .min(6, "Password must be at least 6 characters")
@@ -21,4 +21,4 @@ const registerValidation = yup.object().shape({
     .matches(/^[a-zA-Z ]*$/, "Full name must only contain letters"),
 });
 
-export { loginValidation, registerValidation };
+export { LoginValidation, RegisterValidation  };

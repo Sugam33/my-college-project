@@ -1,21 +1,53 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Input } from "../Components/UsedInputs";
 import Layout from "../Layout/Layout";
 import { FiLogIn } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import { LoginValidation } from "../Components/Validation/UserValidation";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { InlineError } from "../Components/Notifications/Error";
 
 function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { isLoading, isError, userInfo, isSuccess } = useSelector((state) => state.userLogin);
+
+  // validate user
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(LoginValidation),
+  })
+
+  // on submit
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <Layout>
       <div className="container mx-auto px-2 my-24 flex-colo">
-        <div className="w-full 2xl:w-2/5 gap-8 flex-colo p-8 sm:p-14 md:w-3/5 bg-dry  rounded-lg border border-border">
+        <form onSubmit={handleSubmit(onSubmit)}  className="w-full 2xl:w-2/5 gap-8 flex-colo p-8 sm:p-14 md:w-3/5 bg-dry  rounded-lg border border-border">
          <h1 style={{fontSize: 30}}>Login</h1>
-          <Input
+         <div className="w-full">
+         <Input
             label="Email"
             placeholder="Enter your email"
             type="email"
+            name="email"
+            register={register("email")}
             bg={true}
           />
+          {
+            errors.email && <InlineError text={errors.email.message} />
+          }
+         </div>
+         
           <Input
             label="Password"
             placeholder="*******"
@@ -34,7 +66,7 @@ function Login() {
               Sign Up
             </Link>
           </p>
-        </div>
+        </form>
       </div>
     </Layout>
   );
