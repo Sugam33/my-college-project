@@ -8,6 +8,9 @@ import { useForm } from "react-hook-form";
 import { LoginValidation } from "../Components/Validation/UserValidation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { InlineError } from "../Components/Notifications/Error";
+import { loginAction } from "../Redux/Actions/userActions";
+import { useEffect } from "react";
+import  toast from "react-hot-toast";
 
 function Login() {
   const dispatch = useDispatch();
@@ -26,8 +29,25 @@ function Login() {
 
   // on submit
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(loginAction(data));
   };
+
+  // useEffect
+  useEffect(() => {
+    if (userInfo?.isAdmin) {
+      navigate("/dashboard");
+    }
+    else if (userInfo) {
+      navigate("/profile");
+    }
+    if (isSuccess) {
+      toast.success(`Welcome back ${userInfo?.fullName}`);
+    }
+    if (isError) {
+      toast.error(isError);
+      dispatch({ type: "USER_LOGIN_RESET" });
+    }
+  }, [userInfo, isSuccess, isError, navigate, dispatch]);
 
   return (
     <Layout>
@@ -47,19 +67,35 @@ function Login() {
             errors.email && <InlineError text={errors.email.message} />
           }
          </div>
-         
-          <Input
+
+         <div className="w-full">
+         <Input
             label="Password"
-            placeholder="*******"
+            placeholder="Enter your password"
             type="password"
             bg={true}
+            name="password"
+            register={register("password")}
+            
           />
-          <Link
-            to="/dashboard"
-            className="bg-subMain transitions hover:bg-main flex-rows gap-4 text-white p-4 rounded-lg w-full"
-          >
-            <FiLogIn /> Sign In
-          </Link>
+          {
+            errors.password && <InlineError text={errors.password.message} />
+          }
+         </div>
+         
+          <button type="submit" disabled={isLoading} className="bg-subMain transitions hover:bg-main flex-rows gap-4 text-white p-4 rounded-lg w-full"> 
+          {
+            // if loading show loading
+            isLoading ? (
+              "Loading..."
+            ) : (
+              <>
+                 <FiLogIn /> Sign In
+              </>
+            )
+          }
+           
+          </button>
           <p className="text-center text-border">
             Don't have an account?{" "}
             <Link to="/register" className="text-dryGray font-semibold ml-2">

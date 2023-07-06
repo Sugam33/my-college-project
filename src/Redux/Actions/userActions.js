@@ -5,7 +5,7 @@ import { ErrorsAction } from "../Protection";
 
 
 // login action
-const loginAction = (user) => async (dispatch) => {
+const loginAction = (datas) => async (dispatch) => {
     try {
         dispatch({ type: userConstants.USER_LOGIN_REQUEST });
         const response = await userApi.loginService(datas);

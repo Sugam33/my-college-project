@@ -42,7 +42,7 @@ export const Input = ({
     <div className="text-sm w-full">
       <label className="text-border font-semibold">{label}</label>
       <input
-        required
+        
         name={name}
         value={value}
         onChange={onChange}
