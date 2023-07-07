@@ -62,7 +62,15 @@ function NavBar() {
               }
               className={Hover}
             >
-              <CgUser className="w-8 h-8" />
+              {userInfo ? (
+                <img
+                  src={userInfo?.image ? userInfo?.image : "/images/user.jpg"}
+                  alt={userInfo?.fullName}
+                  className="w-8 h-8 rounded-full border object-cover border-subMain"
+                />
+              ) : (
+                <CgUser className="w-8 h-8" />
+              )}
             </NavLink>
             <NavLink to="/favorites" className={`${Hover} relative`}>
               <FaHeart className="w-6 h-6" />
