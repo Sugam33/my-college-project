@@ -16,7 +16,6 @@ function Uploder({ setImageUrl }) {
       file.append("file", acceptedFiles[0]);
       const data = await uploadImageservice(file, setLoading);
       setImageUrl(data);
-      console.log(data);
     },
     [setImageUrl]
   );
@@ -41,7 +40,7 @@ function Uploder({ setImageUrl }) {
           <span className="mx-auto flex-colo text-subMain text-3xl">
             <FiUploadCloud />
           </span>
-          <p className="text-sm mt-2">Drag your image here</p>
+          <p className="text-sm mt-2">Add Image Here</p>
           <em className="text-xs text-border">
             {isDragActive
               ? "Drop the image"

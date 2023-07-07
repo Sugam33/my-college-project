@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { InlineError } from "../../Components/Notifications/Error";
 import { Imagepreview } from "../../Components/Imagepreview";
 import { updateProfileAction } from "../../Redux/Actions/userActions";
+import { toast } from "react-hot-toast";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -21,7 +22,6 @@ function Profile() {
   const { isLoading, isError, isSuccess } = useSelector(
     (state) => state.userUpdateProfile
   );
-
 
   // validate user
   const {
@@ -35,7 +35,7 @@ function Profile() {
 
   // on submit
   const onSubmit = (data) => {
-    console.log({...data,image:imageUrl});
+    dispatch(updateProfileAction({ ...data, image: imageUrl }));
   };
 
   // useEffect
@@ -44,19 +44,26 @@ function Profile() {
       setValue("fullName", userInfo?.fullName);
       setValue("email", userInfo?.email);
     }
-  }, [userInfo, setValue]);
+    if (isSuccess) {
+      dispatch({ type: "USER_UPDATE_PROFILE_RESET" });
+    }
+    if (isError) {
+      toast.error(isError);
+    }
+  }, [userInfo, setValue, isSuccess, isError, dispatch]);
+
   return (
     <SideBar>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
         <h2 className="text-xl font-bold">Profile</h2>
         <div className="w-full grid lg:grid-cols-12 gap-6">
           <div className="col-span-10">
-            <Uploder setImageUrl={setImageUrl}/>
+            <Uploder setImageUrl={setImageUrl} />
           </div>
           {/* image preview */}
           <div className="col-span-2">
-            <Imagepreview 
-                image={imageUrl}
+            <Imagepreview
+              image={imageUrl}
               name={userInfo ? userInfo.fullName : "Enter Full Name"}
             />
           </div>
@@ -89,7 +96,7 @@ function Profile() {
             Delete Account
           </button>
           <button className="bg-main font-medium transitions hover:bg-subMain border border-subMain text-white py-3 px-6 rounded w-full sm:w-auto">
-            Update Profile
+            {isLoading ? "Updating..." : "Update Profile"}
           </button>
         </div>
       </form>
