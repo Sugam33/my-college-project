@@ -51,7 +51,7 @@ function Profile() {
         <h2 className="text-xl font-bold">Profile</h2>
         <div className="w-full grid lg:grid-cols-12 gap-6">
           <div className="col-span-10">
-            <Uploder />
+            <Uploder setImageUrl={setImageUrl}/>
           </div>
           {/* image preview */}
           <div className="col-span-2">

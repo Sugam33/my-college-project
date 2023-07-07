@@ -4,16 +4,22 @@ import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { FiUploadCloud } from "react-icons/fi";
 import Loader from "./Notifications/Loader";
+import { uploadImageservice } from "../Redux/APIs/ImageUploadService";
 
 function Uploder({ setImageUrl }) {
   const [loading, setLoading] = useState(false);
 
   // upload file
-  const onDrop = useCallback(async (acceptedFiles) => {
-    const file = new FormData();
-    file.append("file", acceptedFiles[0]);
-    console.log(acceptedFiles[0]);
-  });
+  const onDrop = useCallback(
+    async (acceptedFiles) => {
+      const file = new FormData();
+      file.append("file", acceptedFiles[0]);
+      const data = await uploadImageservice(file, setLoading);
+      setImageUrl(data);
+      console.log(data);
+    },
+    [setImageUrl]
+  );
 
   const { getRootProps, getInputProps, isDragActive, isDragReject } =
     useDropzone({
