@@ -20,6 +20,7 @@ export const userLoginReducer = (state = {}, action) => {
 }
 
 // REGISTER
+
 export const userRegisterReducer = (state = {}, action) => {
     switch (action.type) {
         case userConstants.USER_REGISTER_REQUEST:
@@ -50,4 +51,21 @@ export const userUpdateProfileReducer = (state = {}, action) => {
         default:
             return state;
     }
-}
+};
+
+// DELETE PROFILE
+
+export const userDeleteProfileReducer = (state = {}, action) => {
+    switch (action.type) {
+        case userConstants.USER_DELETE_PROFILE_REQUEST:
+            return { isLoading: true };
+        case userConstants.USER_DELETE_PROFILE_SUCCESS:
+            return { isLoading: false, isSuccess: true };
+        case userConstants.USER_DELETE_PROFILE_FAIL:
+            return { isLoading: false, isError: action.payload };
+        case userConstants.USER_DELETE_PROFILE_RESET:
+            return {};
+        default:
+            return state;
+    }
+};
