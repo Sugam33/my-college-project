@@ -64,7 +64,7 @@ const deleteProfileAction = () => async (dispatch, getState) => {
     await userApi.deleteProfileService(tokenProtection(getState));
     dispatch({ type: userConstants.USER_DELETE_PROFILE_SUCCESS });
     toast.success("Profile Deleted");
-    dispatch(loginAction());
+    dispatch(logoutAction());
   } catch (error) {
     ErrorsAction(error, dispatch, userConstants.USER_DELETE_PROFILE_FAIL);
   }

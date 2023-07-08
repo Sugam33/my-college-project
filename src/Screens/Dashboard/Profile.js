@@ -59,6 +59,8 @@ function Profile() {
     }
     if (isError || deleteError) {
       toast.error(isError || deleteError);
+      dispatch({ type: "USER_UPDATE_PROFILE_RESET" });
+      dispatch({ type: "USER_DELETE_PROFILE_RESET" });
     }
   }, [userInfo, setValue, isSuccess, isError, dispatch, deleteError]);
 
@@ -107,7 +109,7 @@ function Profile() {
             disabled={deleteLoading || isLoading}
             className="bg-subMain font-medium transitions hover:bg-main border border-subMain text-white py-3 px-6 rounded w-full sm:w-auto"
           >
-            {isLoading ? "Deleting..." : "Delete Account"}
+            {deleteLoading? "Deleting..." : "Delete Account"}
           </button>
           <button
             disabled={deleteLoading || isLoading}
