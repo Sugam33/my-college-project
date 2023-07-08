@@ -109,7 +109,7 @@ function Profile() {
             disabled={deleteLoading || isLoading}
             className="bg-subMain font-medium transitions hover:bg-main border border-subMain text-white py-3 px-6 rounded w-full sm:w-auto"
           >
-            {deleteLoading? "Deleting..." : "Delete Account"}
+            {deleteLoading ? "Deleting..." : "Delete Account"}
           </button>
           <button
             disabled={deleteLoading || isLoading}
