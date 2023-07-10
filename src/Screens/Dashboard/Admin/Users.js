@@ -39,6 +39,7 @@ function Users() {
       });
     }
   }, [dispatch, isError, deleteError, isSuccess]);
+
   return (
     <SideBar>
       <div className="flex flex-col gap-6">
