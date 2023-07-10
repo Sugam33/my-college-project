@@ -17,19 +17,20 @@ const Rows = ({ data, users, OnEditFunction, onDeleteFunction }) => {
             <div className="w-12 p-1 bg-dry border border-border h-12 rounded overflow-hidden">
               <img
                 className="h-full w-full object-cover"
-                src={`${data.image ? data.image : "/images/user.jpg"}`}
+                src={`${data?.image ? data.image : "/images/user.jpg"}`}
                 alt={data?.fullName}
               />
             </div>
           </td>
           <td className={`${Text}`}>
-            {data._id ? shortUppercaseId(data._id) : "2R75T8"}
+            {data?._id ? shortUppercaseId(data?._id) : "2R75T8"}
           </td>
           <td className={`${Text}`}>{DateFormat(data?.createdAt)}</td>
-          <td className={`${Text}`}>{data.fullName}</td>
-          <td className={`${Text}`}>{data.email}</td>
+          <td className={`${Text}`}>{data?.fullName}</td>
+          <td className={`${Text}`}>{data?.email}</td>
+          <td className={`${Text}`}>{data?.isAdmin ? "Admin" : "User"}</td>
           <td className={`${Text} float-right flex-rows gap-2`}>
-            {!data.isAdmin && (
+            {!data?.isAdmin && (
               <button
                 onClick={() => onDeleteFunction(data?._id)}
                 className="bg-subMain text-white rounded flex-colo w-6 h-6"
@@ -87,6 +88,9 @@ function Table2({ data, users, OnEditFunction, onDeleteFunction }) {
                 </th>
                 <th scope="col" className={`${Head}`}>
                   Email
+                </th>
+                <th scope="col" className={`${Head}`}>
+                  Role
                 </th>
               </>
             ) : (
