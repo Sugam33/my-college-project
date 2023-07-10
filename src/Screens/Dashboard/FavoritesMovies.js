@@ -64,7 +64,7 @@ function FavoritesMovies() {
         ) : likedMovies.length > 0 ? (
           <Table data={likedMovies} admin={false} />
         ) : (
-          <Empty message="No movies found"/>
+          <Empty message="Your Watch List is Empty"/>
         )}
       </div>
     </SideBar>
