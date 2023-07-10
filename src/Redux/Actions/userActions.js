@@ -109,6 +109,7 @@ const deleteFavoriteMoviesAction = () => async (dispatch, getState) => {
     dispatch({
       type: userConstants.DELETE_FAVORITE_MOVIES_SUCCESS,
     });
+    toast.success("Favorite Movies Deleted");
   } catch (error) {
     ErrorsAction(error, dispatch, userConstants.DELETE_FAVORITE_MOVIES_FAIL);
   }

@@ -9,6 +9,7 @@ import {
 } from "../../Redux/Actions/userActions";
 import { toast } from "react-hot-toast";
 import Loader from "../../Components/Notifications/Loader";
+import { Empty } from "../../Components/Notifications/Empty";
 
 function FavoritesMovies() {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ function FavoritesMovies() {
 
   // delete movie handler
   const deleteMoviesHandler = () => {
-    window.confirm("Are you sure you want to delete all movies?") &&
+    window.confirm("Are you sure you want to delete all movies from watchlist?") &&
       dispatch(deleteFavoriteMoviesAction());
   };
 
@@ -41,23 +42,29 @@ function FavoritesMovies() {
           : "DELETE_FAVORITE_MOVIES_RESET",
       });
     }
-  }, [dispatch, isError, deleteError]);
+  }, [dispatch, isError, deleteError, isSuccess]);
 
   return (
     <SideBar>
       <div className="flex flex-col gap-6">
         <div className="flex-btn gap-2">
           <h2 className="text-xl font-bold">Favorites Movies</h2>
-          <button className="bg-main font-medium transitions hover:bg-subMain border border-subMain text-white py-3 px-6 rounded">
-            Delete All
-          </button>
+          {likedMovies?.length > 0 && (
+            <button
+              disabled={deleteLoading}
+              onClick={deleteMoviesHandler}
+              className="bg-main font-medium transitions hover:bg-subMain border border-subMain text-white py-3 px-6 rounded"
+            >
+              {deleteLoading ? "Deleting..." : "Delete All"}
+            </button>
+          )}
         </div>
         {isLoading ? (
           <Loader />
         ) : likedMovies.length > 0 ? (
           <Table data={likedMovies} admin={false} />
         ) : (
-          <p>Empty</p>
+          <Empty message="No movies found"/>
         )}
       </div>
     </SideBar>
