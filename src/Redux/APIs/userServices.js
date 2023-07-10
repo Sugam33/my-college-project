@@ -80,6 +80,7 @@ const deleteFavoriteMovies = async (token) => {
   return data;
 };
 
+
 // admin get all users
 const getAllUsersService = async (token) => {
   const { data } = await Axios.get("/users", {
