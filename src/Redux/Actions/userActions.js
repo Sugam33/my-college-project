@@ -101,6 +101,19 @@ const getFavoriteMoviesAction = () => async (dispatch, getState) => {
   }
 };
 
+// delete all favorite movies action
+const deleteFavoriteMoviesAction = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: userConstants.DELETE_FAVORITE_MOVIES_REQUEST });
+    await userApi.deleteFavoriteMovies(tokenProtection(getState));
+    dispatch({
+      type: userConstants.DELETE_FAVORITE_MOVIES_SUCCESS,
+    });
+  } catch (error) {
+    ErrorsAction(error, dispatch, userConstants.DELETE_FAVORITE_MOVIES_FAIL);
+  }
+};
+
 export {
   loginAction,
   registerAction,
@@ -109,4 +122,5 @@ export {
   deleteProfileAction,
   changePasswordAction,
   getFavoriteMoviesAction,
+  deleteFavoriteMoviesAction,
 };
