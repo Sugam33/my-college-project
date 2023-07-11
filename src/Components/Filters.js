@@ -2,38 +2,21 @@ import { Listbox, Transition } from "@headlessui/react";
 import React, { useState, Fragment } from "react";
 import { CategoriesData } from "../Data/CategoriesData";
 import { FaAngleDown, FaCheck } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import {
+  LanguageData,
+  RatesData,
+  TimesData,
+  YearData,
+} from "../Data/FilterData";
 
-const YearData = [
-  { title: "Sort By Year" },
-  { title: "1700 - 1800" },
-  { title: "1800 - 1900" },
-  { title: "1900 - 2000" },
-  { title: "2000 - 2010" },
-  { title: "2010 - 2030" },
-];
-
-const TimesData = [
-  { title: "Sort By Hours" },
-  { title: "1 - 5 Hours" },
-  { title: "5 - 10 Hours" },
-  { title: "10 - 15 Hours" },
-  { title: "15 - 20 Hours" },
-];
-
-const RatesData = [
-  { title: "Sort By Rates" },
-  { title: "1 Star" },
-  { title: "2 Star" },
-  { title: "3 Star" },
-  { title: "4 Star" },
-  { title: "5 Star" },
-];
-
-function Filters() {
-  const [category, setCategory] = useState({ title: "Category" });
+function Filters({ categories }) {
+  const dispatch = useDispatch();
+  const [category, setCategory] = useState({ title: "All Categories" });
   const [year, setYear] = useState(YearData[0]);
   const [times, setTimes] = useState(TimesData[0]);
   const [rates, setRates] = useState(RatesData[0]);
+  const [language, setLanguage] = useState(LanguageData[0]);
 
   const Filter = [
     {
