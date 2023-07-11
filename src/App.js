@@ -1,5 +1,5 @@
 import Aos from "aos";
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import ScrollOnTop from "./ScrollOnTop";
 // import AboutUs from './Screens/AboutUs';
@@ -22,9 +22,16 @@ import WatchPage from "./Screens/WatchPage";
 import DrawerContext from "./Context/DrawerContext";
 import ToastContainer from "./Components/Notifications/ToastContainer";
 import { AdminProtectedRouter, ProtectedRouter } from "./ProtectedRouter";
+import { useDispatch } from "react-redux";
+import { getAllCategoriesAction } from "./Redux/Actions/CategoriesActions";
 
 function App() {
   Aos.init();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllCategoriesAction());
+  }, [dispatch]);
+
   return (
     <>
       <ToastContainer />
