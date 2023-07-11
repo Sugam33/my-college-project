@@ -1,8 +1,29 @@
 import React from "react";
 import MainModal from "./MainModal";
 import { Input } from "../UsedInputs";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { updateCategoryAction } from "../../Redux/Actions/CategoriesActions";
 
 function CategoryModal({ modalOpen, setModalOpen, category }) {
+  const [title, setTitle] = useState("");
+  const dispatch = useDispatch();
+
+  const { isLoading, isError, isSuccess } = useSelector(
+    (state) => state.categoryCreate
+  );
+
+  // category handler
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (title) {
+      // if category is not empty then update category else create category
+      if (category) {
+        dispatch(updateCategoryAction(category?._id, { title: title }));
+      }
+    }
+  };
+
   return (
     <MainModal modalOpen={modalOpen} setModalOpen={setModalOpen}>
       <div className="inline-block sm:w-4/5 border border-border md:w-3/5 lg:w-2/5 w-full align-middle p-10 overflow-y-auto h-full bg-main text-white rounded-2xl">
