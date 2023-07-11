@@ -7,11 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { getAllMoviesAction } from "../Redux/Actions/MoviesActions";
+import Loader from "../Components/Notifications/Loader";
+import { RiMovie2Line } from "react-icons/ri";
 // import { CgSpinner } from "react-icons/cg";
 
 function MoviesPage() {
   const dispatch = useDispatch();
-
+  const sameClass = "w-full gap-6 flex-colo min-h-screen";
   // all movies
   const { isLoading, isError, movies, pages, page } = useSelector(
     (state) => state.getAllMovies
@@ -25,8 +27,6 @@ function MoviesPage() {
     if (isError) {
       toast.error(isError);
     }
-    // get all movies
-    dispatch(getAllMoviesAction());
   }, [dispatch, isError]);
 
   return (
@@ -40,13 +40,28 @@ function MoviesPage() {
           </span>{" "}
           items Found
         </p>
-        <div className="grid sm:mt-10 mt-6 xl:grid-cols-4 2xl:grid-cols-5 lg:grid-cols-3 sm:grid-cols-2 gap-6">
-          {Movies.slice(0, page)?.map((movie, index) => (
-            <Movie key={index} movie={movie} />
-          ))}
-        </div>
-        {/* Loading More */}
-        <div className="w-full flex-colo md:my-20 my-10"></div>
+        {isLoading ? (
+          <div className={sameClass}>
+            <Loader />
+          </div>
+        ) : movies?.length > 0 ? (
+          <>
+            <div className="grid sm:mt-10 mt-6 xl:grid-cols-4 2xl:grid-cols-5 lg:grid-cols-3 sm:grid-cols-2 gap-6">
+              {Movies.slice(0, page)?.map((movie, index) => (
+                <Movie key={index} movie={movie} />
+              ))}
+            </div>
+            {/* Loading More */}
+            <div className="w-full flex-colo md:my-20 my-10"></div>
+          </>
+        ) : (
+          <div className={sameClass}>
+            <div className="w-24 h-24 p-5 rounded-full mb-4 bg-dry text-subMain text-4xl flex-colo">
+             <RiMovie2Line /> 
+            </div>
+            <p className="text-border text-sm">No Movies</p>
+          </div>
+        )}
       </div>
     </Layout>
   );
