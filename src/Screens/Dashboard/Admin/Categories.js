@@ -2,12 +2,21 @@ import React, { useEffect, useState } from "react";
 import { HiPlusCircle } from "react-icons/hi";
 import Table2 from "../../../Components/Table2";
 import SideBar from "../SideBar";
-import { CategoriesData } from "../../../Data/CategoriesData";
 import CategoryModal from "../../../Components/Modals/CategoryModal";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCategoriesAction } from "../../../Redux/Actions/CategoriesActions";
+import Loader from "../../../Components/Notifications/Loader";
+import { Empty } from "../../../Components/Notifications/Empty";
 
 function Categories() {
   const [modalOpen, setModalOpen] = useState(false);
   const [category, setCategory] = useState();
+  const dispatch = useDispatch();
+
+  // all categories
+  const { categories, isLoading } = useSelector(
+    (state) => state.categoryGetAll
+  );
 
   const OnEditFunction = (id) => {
     setCategory(id);
@@ -15,10 +24,12 @@ function Categories() {
   };
 
   useEffect(() => {
+    // get all categories
+    dispatch(getAllCategoriesAction());
     if (modalOpen === false) {
       setCategory();
     }
-  }, [modalOpen]);
+  }, [modalOpen, dispatch]);
 
   return (
     <SideBar>
@@ -38,11 +49,17 @@ function Categories() {
           </button>
         </div>
 
-        <Table2
-          data={CategoriesData}
-          users={false}
-          OnEditFunction={OnEditFunction}
-        />
+        {isLoading ? (
+          <Loader />
+        ) : categories.length > 0 ? (
+          <Table2
+            data={categories}
+            users={false}
+            OnEditFunction={OnEditFunction}
+          />
+        ) : (
+          <Empty message="No Categories Found" />
+        )}
       </div>
     </SideBar>
   );

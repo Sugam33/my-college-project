@@ -43,10 +43,11 @@ const Rows = ({ data, users, OnEditFunction, onDeleteFunction }) => {
       ) : (
         // Categories
         <>
-          <td className={`${Text} font-bold`}>2R75T8</td>
-          <td className={`${Text}`}>
-            {data.createAt ? data.createAt : "dummy date"}
+          <td className={`${Text} font-bold`}>
+            {" "}
+            {data?._id ? shortUppercaseId(data?._id) : "2R75T8"}
           </td>
+          <td className={`${Text}`}>{DateFormat(data?.createdAt)}</td>
           <td className={`${Text}`}>{data.title}</td>
           <td className={`${Text} float-right flex-rows gap-2`}>
             <button
@@ -102,7 +103,7 @@ function Table2({ data, users, OnEditFunction, onDeleteFunction }) {
                   Date
                 </th>
                 <th scope="col" className={`${Head}`}>
-                  Title
+                 Name
                 </th>
               </>
             )}
