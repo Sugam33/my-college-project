@@ -1,8 +1,6 @@
 import { Listbox, Transition } from "@headlessui/react";
-import React, { useState, Fragment } from "react";
-import { CategoriesData } from "../Data/CategoriesData";
+import React, { Fragment } from "react";
 import { FaAngleDown, FaCheck } from "react-icons/fa";
-import { useDispatch } from "react-redux";
 import {
   LanguageData,
   RatesData,
@@ -10,19 +8,34 @@ import {
   YearData,
 } from "../Data/FilterData";
 
-function Filters({ categories }) {
-  const dispatch = useDispatch();
-  const [category, setCategory] = useState({ title: "All Categories" });
-  const [year, setYear] = useState(YearData[0]);
-  const [times, setTimes] = useState(TimesData[0]);
-  const [rates, setRates] = useState(RatesData[0]);
-  const [language, setLanguage] = useState(LanguageData[0]);
+function Filters(props) {
+  const {
+    categories,
+    category,
+    setCategory,
+    language,
+    setLanguage,
+    year,
+    setYear,
+    times,
+    setTimes,
+    rates,
+    setRates,
+  } = props?.data;
 
   const Filter = [
     {
       value: category,
       onChange: setCategory,
-      items: CategoriesData,
+      items:
+        categories?.length > 0
+          ? [{ title: "All Categories" }, ...categories]
+          : [{ title: "No category found" }],
+    },
+    {
+      value: language,
+      onChange: setLanguage,
+      items: LanguageData,
     },
     {
       value: year,
@@ -42,7 +55,7 @@ function Filters({ categories }) {
   ];
 
   return (
-    <div className="my-6 bg-dry border text-dryGray border-gray-800 grid md:grid-cols-4 grid-cols-2 lg:gap-12 gap-2 rounded p-6">
+    <div className="my-6 bg-dry border text-dryGray border-gray-800 grid md:grid-cols-5 grid-cols-2 lg:gap-12 gap-2 rounded p-6">
       {Filter.map((item, index) => (
         <Listbox key={index} value={item.value} onChange={item.onChange}>
           <div className="relative">

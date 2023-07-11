@@ -1,20 +1,20 @@
 import mongoose from "mongoose"; // yo movie ko lagi schema ra model
 
 const reviewSchema = mongoose.Schema(
-    {
-        userName: { type: String, required: true },
-        userImage: { type: String },
-        rating: { type: Number, required: true },
-        comment: { type: String, required: true },
-        userId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-            required: true,
-        },
+  {
+    userName: { type: String, required: true },
+    userImage: { type: String },
+    rating: { type: Number, required: true },
+    comment: { type: String, required: true },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
-    {
-        timestamps: true,
-    }
+  },
+  {
+    timestamps: true,
+  }
 );
 
 const moviesSchema = mongoose.Schema(
