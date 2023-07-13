@@ -91,6 +91,8 @@ export const reviewMovieAction = (id, review) => async (dispatch, getState) => {
       payload: response,
     });
     toast.success("Review added");
+    dispatch({ type: moviesConstants.CREATE_REVIEW_RESET });
+    dispatch(getMovieByIdAction(id));
   } catch (error) {
     ErrorsAction(error, dispatch, moviesConstants.CREATE_REVIEW_FAIL);
   }
