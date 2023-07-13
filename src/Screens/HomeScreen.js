@@ -45,10 +45,10 @@ function HomeScreen() {
   return (
     <Layout>
       <div className="container mx-auto min-h-screen px-2 mb-6">
-        <Banner />
-        <PopularMovies />
+        <Banner movies={movies} isLoading={isLoading} />
+        <PopularMovies movies={randomMovies} isLoading={randomLoading} />
         {/* <Promos /> */}
-        <TopRated />
+        <TopRated movies={topMovies} isLoading={topLoading} />
       </div>
     </Layout>
   );
