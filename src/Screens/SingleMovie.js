@@ -4,7 +4,6 @@ import MovieCasts from "../Components/Single/MovieCasts";
 import MovieInfo from "../Components/Single/MovieInfo";
 import MovieRates from "../Components/Single/MovieRates";
 import Titles from "../Components/Titles";
-import { Movies } from "../Data/MovieData";
 import Layout from "../Layout/Layout";
 import { BsCollectionFill } from "react-icons/bs";
 import Movie from "../Components/Movie";
@@ -25,13 +24,14 @@ function SingleMovie() {
   );
   const { movies } = useSelector((state) => state.getAllMovies);
 
+  const RelatedMovies = movies?.filter((m) => m.category === movie?.category);
+
   // useEffect
   useEffect(() => {
     // movie id
     dispatch(getMovieByIdAction(id));
   }, [dispatch, id]);
 
-  // const RelatedMovies = Movies.filter((m) => m.category === movie.category);
   return (
     <Layout>
       {isLoading ? (
@@ -54,18 +54,20 @@ function SingleMovie() {
           />
           <MovieInfo movie={movie} setModalOpen={setModalOpen} />
           <div className="container mx-auto min-h-screen px-2 my-6">
-            <MovieCasts movie={movie}/>
+            <MovieCasts movie={movie} />
             {/* rate */}
             <MovieRates movie={movie} />
             {/* related */}
-            {/* <div className="my-16">
-          <Titles title="Related Movies" Icon={BsCollectionFill} />
-          <div className="grid sm:mt-10 mt-6 xl:grid-cols-4 2xl:grid-cols-5 lg:grid-cols-3 sm:grid-cols-2 gap-6">
-            {RelatedMovies.map((movie, index) => (
-              <Movie key={index} movie={movie} />
-            ))}
-          </div>
-        </div> */}
+            {/* {RelatedMovies?.length > 0 && (
+              <div className="my-16">
+                <Titles title="Related Movies" Icon={BsCollectionFill} />
+                <div className="grid sm:mt-10 mt-6 xl:grid-cols-4 2xl:grid-cols-5 lg:grid-cols-3 sm:grid-cols-2 gap-6">
+                  {RelatedMovies?.map((movie) => (
+                    <Movie key={movie?._id} movie={movie} />
+                  ))}
+                </div>
+              </div>
+            )} */}
           </div>
         </>
       )}
