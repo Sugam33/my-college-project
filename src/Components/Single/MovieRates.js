@@ -62,7 +62,7 @@ function MovieRates({ movie }) {
           </button>
         </div>
         {/* REVIWERS */}
-        <div className="col-span-3 flex flex-col gap-6">
+        <div className="col-span-3 flex w-full flex-col gap-6">
           <h3 className="text-xl text-text font-semibold">
             Reviews ({movie?.numberOfReviews})
           </h3>
