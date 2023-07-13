@@ -78,22 +78,24 @@ export const getTopRatedMovieAction = () => async (dispatch) => {
 };
 
 // review movie action
-export const reviewMovieAction = (id, review) => async (dispatch, getState) => {
-  try {
-    dispatch({ type: moviesConstants.CREATE_REVIEW_REQUEST });
-    const response = await moviesAPIs.reviewMovieService(
-      tokenProtection(getState),
-      id,
-      review
-    );
-    dispatch({
-      type: moviesConstants.CREATE_REVIEW_SUCCESS,
-      payload: response,
-    });
-    toast.success("Review added");
-    dispatch({ type: moviesConstants.CREATE_REVIEW_RESET });
-    dispatch(getMovieByIdAction(id));
-  } catch (error) {
-    ErrorsAction(error, dispatch, moviesConstants.CREATE_REVIEW_FAIL);
-  }
-};
+export const reviewMovieAction =
+  ({ id, review }) =>
+  async (dispatch, getState) => {
+    try {
+      dispatch({ type: moviesConstants.CREATE_REVIEW_REQUEST });
+      const response = await moviesAPIs.reviewMovieService(
+        tokenProtection(getState),
+        id,
+        review
+      );
+      dispatch({
+        type: moviesConstants.CREATE_REVIEW_SUCCESS,
+        payload: response,
+      });
+      toast.success("Review added");
+      dispatch({ type: moviesConstants.CREATE_REVIEW_RESET });
+      dispatch(getMovieByIdAction(id));
+    } catch (error) {
+      ErrorsAction(error, dispatch, moviesConstants.CREATE_REVIEW_FAIL);
+    }
+  };
