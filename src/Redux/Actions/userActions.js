@@ -117,18 +117,19 @@ const deleteFavoriteMoviesAction = () => async (dispatch, getState) => {
 
 // admin get all users action
 const getAllUsersAction = () => async (dispatch, getState) => {
-    try {
-      dispatch({ type: userConstants.GET_ALL_USERS_REQUEST });
-      const response = await userApi.getAllUsersService(tokenProtection(getState));
-      dispatch({
-        type: userConstants.GET_ALL_USERS_SUCCESS,
-        payload: response,
-      });
-    } catch (error) {
-      ErrorsAction(error, dispatch, userConstants.GET_ALL_USERS_FAIL);
-    }
+  try {
+    dispatch({ type: userConstants.GET_ALL_USERS_REQUEST });
+    const response = await userApi.getAllUsersService(
+      tokenProtection(getState)
+    );
+    dispatch({
+      type: userConstants.GET_ALL_USERS_SUCCESS,
+      payload: response,
+    });
+  } catch (error) {
+    ErrorsAction(error, dispatch, userConstants.GET_ALL_USERS_FAIL);
+  }
 };
-
 
 // admin delete user action
 const deleteUserAction = (id) => async (dispatch, getState) => {
@@ -144,6 +145,25 @@ const deleteUserAction = (id) => async (dispatch, getState) => {
   }
 };
 
+// liked movie action
+const likedMovieAction = (movieId) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: userConstants.LIKED_MOVIE_REQUEST });
+    const response = await userApi.likedMovieService(
+      movieId,
+      tokenProtection(getState)
+    );
+    dispatch({
+      type: userConstants.LIKED_MOVIE_SUCCESS,
+      payload: response,
+    });
+    toast.success("Movie added to Watchlist");
+    dispatch(getFavoriteMoviesAction());
+  } catch (error) {
+    ErrorsAction(error, dispatch, userConstants.LIKED_MOVIE_FAIL);
+  }
+};
+
 export {
   loginAction,
   registerAction,
@@ -155,4 +175,5 @@ export {
   deleteFavoriteMoviesAction,
   getAllUsersAction,
   deleteUserAction,
+  likedMovieAction,
 };
