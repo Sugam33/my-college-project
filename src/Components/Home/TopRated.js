@@ -12,8 +12,17 @@ import { Link } from "react-router-dom";
 import Rating from "../Stars";
 import Loader from "../Notifications/Loader";
 import { Empty } from "../Notifications/Empty";
+import { useDispatch, useSelector } from "react-redux";
+import { IfLikedMovie, likedMovie } from "../../Context/Functionalities";
 
 const SwiperTop = ({ prevEl, nextEl, movies }) => {
+  const { isLoading } = useSelector((state) => state.userLikedMovie);
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.userLogin);
+
+  const isLiked = (movie) => {
+    return IfLikedMovie(movie);
+  };
   return (
     <Swiper
       navigation={{ nextEl, prevEl }}
@@ -53,7 +62,13 @@ const SwiperTop = ({ prevEl, nextEl, movies }) => {
               className="w-full h-full object-cover rounded-lg"
             />
             <div className="px-4 hoveres gap-6 text-center absolute bg-black bg-opacity-70 top-0 left-0 right-0 bottom-0">
-              <button className="w-12 h-12 flex-colo transitions hover:bg-subMain rounded-full bg-white bg-opacity-30 text-white">
+              <button
+                onClick={() => likedMovie(movie, dispatch, userInfo)}
+                disabled={isLiked(movie) || isLoading}
+                className={`w-12 h-12 flex-colo transitions hover:bg-subMain rounded-full 
+              ${isLiked(movie) ? "bg-subMain" : "bg-white bg-opacity-30"}
+              text-white`}
+              >
                 <FaHeart />
               </button>
               <Link
