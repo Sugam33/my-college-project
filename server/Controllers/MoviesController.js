@@ -13,7 +13,7 @@ const importMovies = asyncHandler(async(req, res) => {
 // get all movies,   route- GET /api/movies
 const getMovies = asyncHandler(async(req, res) => {
     try{
-        // filter movies by category, time, language, rate, year and search
+        // filter movies by category, time, language, rate, year and search garna lai use huncha
         const{ category, time, language, rate, year, search } = req.query;
         let query = {
             ...(category && { category }),
@@ -24,12 +24,10 @@ const getMovies = asyncHandler(async(req, res) => {
             ...(search && { name: { $regex: search, $options: "i" } }), 
         }
 
-        // load more movies functionality
-        const page = Number(req.query.pageNumber) || 1; // if page number not provided in query we set it to 1
-        const limit = 10; // 2 movies per page
-        const skip = (page - 1) * limit; // skip 2 movies per page
+        const page = Number(req.query.pageNumber) || 1; 
+        const limit = 10; 
+        const skip = (page - 1) * limit; 
 
-        // find movies by query, skip and limit
         const movies = await Movie.find(query)
      //   .sort({ createdAt: -1 })
         .skip(skip)
