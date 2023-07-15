@@ -25,11 +25,11 @@ function SideBar({ children }) {
 
   const SideLinks = userInfo?.isAdmin
     ? [
-        {
-          name: "Dashboard",
-          link: "/dashboard",
-          icon: BsFillGridFill,
-        },
+        // {
+        //   name: "Dashboard",
+        //   link: "/dashboard",
+        //   icon: BsFillGridFill,
+        // },
         {
           name: "Movies List",
           link: "/movieslist",
