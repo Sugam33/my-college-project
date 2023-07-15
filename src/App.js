@@ -42,7 +42,7 @@ function App() {
       dispatch(getFavoriteMoviesAction());
     }
     if (isError || catError) {
-      toast.error("Something went wrong");
+      toast.error(isError || catError);
       dispatch({ type: "LIKED_MOVIE_RESET" });
     }
     if (isSuccess) {

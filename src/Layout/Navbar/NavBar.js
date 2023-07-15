@@ -94,7 +94,7 @@ function NavBar() {
             <NavLink to="/favorites" className={`${Hover} relative`}>
               <FaHeart className="w-6 h-6" />
               <div className="w-5 h-5 flex-colo rounded-full text-xs bg-subMain text-white absolute -top-5 -right-1">
-                {likedMovies?.length}
+                {likedMovies?.length || 0}
               </div>
             </NavLink>
           </div>
