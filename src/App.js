@@ -32,9 +32,7 @@ function App() {
   Aos.init();
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.userLogin);
-  const { isError, isSuccess } = useSelector(
-    (state) => state.userGetFavoriteMovies
-  );
+  const { isError, isSuccess } = useSelector((state) => state.userLikedMovie);
   const { isError: catError } = useSelector((state) => state.categoryGetAll);
 
   useEffect(() => {
@@ -45,7 +43,10 @@ function App() {
     }
     if (isError || catError) {
       toast.error("Something went wrong");
-      dispatch("GET_FAVORITE_MOVIES_RESET");
+      dispatch({ type: "LIKED_MOVIE_RESET" });
+    }
+    if (isSuccess) {
+      dispatch({ type: "LIKED_MOVIE_RESET" });
     }
   }, [dispatch, userInfo, isError, catError, isSuccess]);
 
