@@ -157,3 +157,19 @@ export const adminDeleteUserReducer = (state = {}, action) => {
         return state;
   }
 }
+
+// USER LIKED MOVIE
+export const userLikedMovieReducer = (state = {}, action) => {
+  switch (action.type) {
+    case userConstants.LIKED_MOVIE_REQUEST:
+      return { isLoading: true };
+    case userConstants.LIKED_MOVIE_SUCCESS:
+      return { isLoading: false, isSuccess: true };
+    case userConstants.LIKED_MOVIE_FAIL:
+      return { isLoading: false, isError: action.payload };
+    case userConstants.LIKED_MOVIE_RESET:
+      return {};
+    default: 
+      return state;
+  }
+}
