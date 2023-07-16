@@ -3,10 +3,7 @@ import { useParams } from "react-router-dom";
 import MovieCasts from "../Components/Single/MovieCasts";
 import MovieInfo from "../Components/Single/MovieInfo";
 import MovieRates from "../Components/Single/MovieRates";
-import Titles from "../Components/Titles";
 import Layout from "../Layout/Layout";
-import { BsCollectionFill } from "react-icons/bs";
-import Movie from "../Components/Movie";
 import ShareMovieModal from "../Components/Modals/ShareModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovieByIdAction } from "../Redux/Actions/MoviesActions";
@@ -57,17 +54,6 @@ function SingleMovie() {
             <MovieCasts movie={movie} />
             {/* rate */}
             <MovieRates movie={movie} />
-            {/* related */}
-            {/* {RelatedMovies?.length > 0 && (
-              <div className="my-16">
-                <Titles title="Related Movies" Icon={BsCollectionFill} />
-                <div className="grid sm:mt-10 mt-6 xl:grid-cols-4 2xl:grid-cols-5 lg:grid-cols-3 sm:grid-cols-2 gap-6">
-                  {RelatedMovies?.map((movie) => (
-                    <Movie key={movie?._id} movie={movie} />
-                  ))}
-                </div>
-              </div>
-            )} */}
           </div>
         </>
       )}

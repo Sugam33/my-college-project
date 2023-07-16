@@ -1,5 +1,4 @@
 import React from "react";
-import { BsFillGridFill } from "react-icons/bs";
 import { FaListAlt, FaUsers, FaHeart } from "react-icons/fa";
 import { RiMovie2Fill, RiLockPasswordLine, RiLogoutCircleLine } from "react-icons/ri";
 import { HiViewGridAdd } from "react-icons/hi";
@@ -25,11 +24,6 @@ function SideBar({ children }) {
 
   const SideLinks = userInfo?.isAdmin
     ? [
-        // {
-        //   name: "Dashboard",
-        //   link: "/dashboard",
-        //   icon: BsFillGridFill,
-        // },
         {
           name: "Movies List",
           link: "/movieslist",

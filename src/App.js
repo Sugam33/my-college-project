@@ -2,11 +2,8 @@ import Aos from "aos";
 import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import ScrollOnTop from "./ScrollOnTop";
-// import AboutUs from './Screens/AboutUs';
-// import ContactUs from './Screens/ContactUs';
 import AddMovie from "./Screens/Dashboard/Admin/AddMovie";
 import Categories from "./Screens/Dashboard/Admin/Categories";
-import Dashboard from "./Screens/Dashboard/Admin/Dashboard";
 import MoviesList from "./Screens/Dashboard/Admin/MovieList";
 import Users from "./Screens/Dashboard/Admin/Users";
 import FavoritesMovies from "./Screens/Dashboard/FavoritesMovies";
@@ -58,8 +55,6 @@ function App() {
           <Routes>
             {/* ***************PUBLIC ROUTERS ******************* */}
             <Route path="/" element={<HomeScreen />} />
-            {/* <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/contact-us" element={<ContactUs />} /> */}
             <Route path="/movies" element={<MoviesPage />} />
             <Route path="/movies/:search" element={<MoviesPage />} />
             <Route path="/movie/:id" element={<SingleMovie />} />
@@ -75,7 +70,7 @@ function App() {
               {/* ***************ADMIN ROUTERS ******************* */}
               <Route element={<AdminProtectedRouter />}>
                 <Route path="/movieslist" element={<MoviesList />} />
-                <Route path="/dashboard" element={<Dashboard />} />
+                {/* <Route path="/dashboard" element={<Dashboard />} /> */}
                 <Route path="/categories" element={<Categories />} />
                 <Route path="/users" element={<Users />} />
                 <Route path="/addmovie" element={<AddMovie />} />
