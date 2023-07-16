@@ -37,7 +37,7 @@ function Login() {
   // useEffect
   useEffect(() => {
     if (userInfo?.isAdmin) {
-      navigate("/dashboard");
+      navigate("/movieslist");
     } else if (userInfo) {
       navigate("/profile");
     }
