@@ -103,7 +103,7 @@ function MovieRates({ movie }) {
               name="comment"
               register={{ ...register("comment") }}
               label="Message"
-              placeholder="Make it short and sweet...."
+              placeholder="YOur comments about this movie"
             />
             {errors.comment && <InlineError text={errors.comment.message} />}
           </div>

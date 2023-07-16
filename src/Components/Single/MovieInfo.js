@@ -2,7 +2,6 @@ import React from "react";
 import { FaPlay } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import FlexMovieItems from "../FlexMovieItems";
-import { FiLogIn } from "react-icons/fi";
 import Rating from "../Stars";
 
 function MovieInfo({ movie, setModalOpen }) {
@@ -36,23 +35,11 @@ function MovieInfo({ movie, setModalOpen }) {
               </h1>
               {/* flex items */}
               <div className="flex items-center gap-4 font-medium text-dryGray">
-                {/* <div className="flex-colo bg-subMain text-xs px-2 py-1">
-                  HD 4K
-                </div> */}
                 <FlexMovieItems movie={movie && movie} />
               </div>
               {/* description */}
               <p className="text-text text-sm leading-7">{movie?.desc}</p>
               <div className="grid sm:grid-cols-5 grid-cols-3 gap-4 p-6 bg-main border border-gray-800 rounded-lg">
-                {/* share */}
-                {/* <div className="col-span-1 flex-colo border-r border-border">
-                  <button
-                    onClick={() => setModalOpen(true)}
-                    className="w-10 h-10 flex-colo rounded-lg bg-white bg-opacity-20"
-                  >
-                    <FaShareAlt />
-                  </button>
-                </div> */}
                 {/* language */}
                 <div className="col-span-2 flex-colo font-medium text-sm">
                   <p>
@@ -74,13 +61,6 @@ function MovieInfo({ movie, setModalOpen }) {
               <div className="flex mb-6 text-lg gap-2 text-star">
                   <Rating value={movie?.rate} />
               </div>
-            </div>
-            <div className="col-span-2 md:mt-0 mt-2 flex justify-end">
-              <button className="md:w-1/4 w-full relative flex-colo bg-subMain hover:bg-transparent border-2 border-subMain transitions md:h-64 h-20 rounded font-medium">
-                <div className="flex-rows gap-6 text-md uppercase tracking-widest absolute md:rotate-90">
-                  Download <FiLogIn className="w-6 h-6" />
-                </div>
-              </button>
             </div>
           </div>
         </div>

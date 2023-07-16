@@ -1,9 +1,8 @@
 import Categories from "../Models/CategoriesModal.js";
 import asyncHandler from "express-async-handler";
 
-// *************** PUBLIC CONTROLLERS **************
 
-// get all categories,    route - GET /api/categories
+// sabai categories access garna,    route - GET /api/categories
 const getCategories = asyncHandler(async(req, res) => {
     try{
     // find all categories in database
@@ -16,12 +15,10 @@ const getCategories = asyncHandler(async(req, res) => {
     }
 });
 
-// **************** ADMIN CONTROLLERS *****************
 
 // create new category,    route - POST /api/categories
 const createCategory = asyncHandler(async(req, res) => {
     try{
-    // get title from request body
     const { title } = req.body;
     // create new category
     const category = new Categories({
@@ -63,7 +60,7 @@ const updateCategory = asyncHandler(async(req, res) => {
 // delete category,   route - DELETE /api/categories/:id
 const deleteCategory = asyncHandler(async(req, res) => {
     try{
-        // get category id from request params
+        // get category id from request parameter
         const category = await Categories.findById(req.params.id);
 
         if(category) {

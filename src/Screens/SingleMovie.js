@@ -4,7 +4,6 @@ import MovieCasts from "../Components/Single/MovieCasts";
 import MovieInfo from "../Components/Single/MovieInfo";
 import MovieRates from "../Components/Single/MovieRates";
 import Layout from "../Layout/Layout";
-import ShareMovieModal from "../Components/Modals/ShareModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovieByIdAction } from "../Redux/Actions/MoviesActions";
 import Loader from "../Components/Notifications/Loader";
@@ -44,11 +43,6 @@ function SingleMovie() {
         </div>
       ) : (
         <>
-          <ShareMovieModal
-            modalOpen={modalOpen}
-            setModalOpen={setModalOpen}
-            movie={movie}
-          />
           <MovieInfo movie={movie} setModalOpen={setModalOpen} />
           <div className="container mx-auto min-h-screen px-2 my-6">
             <MovieCasts movie={movie} />

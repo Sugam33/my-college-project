@@ -23,7 +23,7 @@ const Rows = ({ data, users, OnEditFunction, onDeleteFunction }) => {
             </div>
           </td>
           <td className={`${Text}`}>
-            {data?._id ? shortUppercaseId(data?._id) : "2R75T8"}
+            {data?._id ? shortUppercaseId(data?._id) : "dummy"}
           </td>
           <td className={`${Text}`}>{DateFormat(data?.createdAt)}</td>
           <td className={`${Text}`}>{data?.fullName}</td>
@@ -45,7 +45,7 @@ const Rows = ({ data, users, OnEditFunction, onDeleteFunction }) => {
         <>
           <td className={`${Text} font-bold`}>
             {" "}
-            {data?._id ? shortUppercaseId(data?._id) : "2R75T8"}
+            {data?._id ? shortUppercaseId(data?._id) : "dummy"}
           </td>
           <td className={`${Text}`}>{DateFormat(data?.createdAt)}</td>
           <td className={`${Text}`}>{data.title}</td>

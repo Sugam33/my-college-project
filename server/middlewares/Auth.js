@@ -2,14 +2,14 @@ import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import User from "../Models/UserModels.js";
 
-// @desc Authenticated user and get token
+//  user authenticate and get token ko lagi ho yesma chai jwt library use gareko
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
         expiresIn: "1d",
     });
 };
 
-// protection middleware
+// protection ko middleware
 const protect = asyncHandler(async(req, res, next) => {
     let token;
     // check if token exists in headers
@@ -30,7 +30,7 @@ const protect = asyncHandler(async(req, res, next) => {
         throw new Error("Not authorized, token failed");
       }
     }
-    // if token doesnt exist in headers send error
+    // header ma token chaina vane error pathau
     if(!token) {
         res.status(401);
         throw new Error("Not authorized, no token");

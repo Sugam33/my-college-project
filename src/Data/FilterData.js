@@ -16,18 +16,6 @@ export const LanguageData = [
     { title: "Portuguese" },
     { title: "Dutch" },
     { title: "Swedish" },
-    { title: "Danish" },
-    { title: "Norwegian" },
-    { title: "Finnish" },
-    { title: "Indonesian" },
-    { title: "Malay" },
-    { title: "Thai" },
-    { title: "Vietnamese" },
-    { title: "Hebrew" },
-    { title: "Greek" },
-    { title: "Polish" },
-    { title: "Romanian" },
-    { title: "Swahili" },
 ];
 
 export const RatesData = [
@@ -55,6 +43,7 @@ export const TimesData = [
 
 export const YearData = [
     { title: "Sort By Year" },
+    { title: "2023" },
     { title: "2022" },
     { title: "2021" },
     { title: "2019" },

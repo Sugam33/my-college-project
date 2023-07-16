@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import { BiArrowBack } from "react-icons/bi";
-import { FaCloudDownloadAlt, FaHeart, FaPlay } from "react-icons/fa";
+import { FaHeart, FaPlay } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovieByIdAction } from "../Redux/Actions/MoviesActions";
 import Loader from "../Components/Notifications/Loader";
@@ -54,9 +54,7 @@ function WatchPage() {
               >
                 <FaHeart />
               </button>
-              <button className="bg-subMain flex-rows gap-2 hover:text-main transitions text-white rounded px-8 font-medium py-3 text-sm">
-                <FaCloudDownloadAlt /> Download
-              </button>
+  
             </div>
           </div>
         )}

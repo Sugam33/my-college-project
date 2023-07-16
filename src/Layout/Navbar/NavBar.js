@@ -65,12 +65,6 @@ function NavBar() {
             <NavLink to="/movies" className={Hover}>
               Browse Movies
             </NavLink>
-            {/* <NavLink to="/about-us" className={Hover}>
-              About Us
-            </NavLink> */}
-            {/* <NavLink to="/contact-us" className={Hover}>
-              Contact Us
-            </NavLink> */}
             <NavLink
               to={
                 userInfo?.isAdmin
