@@ -3,6 +3,8 @@ import * as moviesAPIs from "../APIs/MoviesServices";
 import toast from "react-hot-toast";
 import { ErrorsAction, tokenProtection } from "../Protection";
 
+// yo sabai chai movies actions ho esma movie ko state chai kasto change vayo vanera dhekauna
+
 // get all movies action
 export const getAllMoviesAction =
   ({

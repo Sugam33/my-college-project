@@ -1,5 +1,7 @@
 import * as userConstants from "../Constants/userConstants";
 
+// user ko haruko lagi reducer function
+
 //LOGIN
 export const userLoginReducer = (state = {}, action) => {
   switch (action.type) {

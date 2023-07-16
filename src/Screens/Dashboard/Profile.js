@@ -27,7 +27,7 @@ function Profile() {
     (state) => state.userDeleteProfile
   );
 
-  // validate user
+  //  user validation
   const {
     register,
     handleSubmit,
@@ -37,7 +37,7 @@ function Profile() {
     resolver: yupResolver(ProfileValidation),
   });
 
-  // update profile
+  // profile update garna onsubmit vanney function banako
   const onSubmit = (data) => {
     dispatch(updateProfileAction({ ...data, image: imageUrl }));
   };

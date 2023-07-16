@@ -25,7 +25,7 @@ function FavoritesMovies() {
     isSuccess,
   } = useSelector((state) => state.userDeleteFavoriteMovies);
 
-  // delete movie handler
+  // movie delete ko lagi handler
   const deleteMoviesHandler = () => {
     window.confirm("Are you sure you want to delete all movies from watchlist?") &&
       dispatch(deleteFavoriteMoviesAction());

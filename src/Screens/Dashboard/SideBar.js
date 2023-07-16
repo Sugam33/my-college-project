@@ -15,7 +15,7 @@ function SideBar({ children }) {
 
   const { userInfo } = useSelector((state) => state.userLogin);
 
-  // logout
+  // logout ko handler
   const logoutHandler = () => {
     dispatch(logoutAction());
     toast.success("Logged out successfully");

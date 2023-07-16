@@ -4,6 +4,8 @@ import * as userApi from "../APIs/userServices";
 import { ErrorsAction, tokenProtection } from "../Protection";
 import { toast } from "react-hot-toast";
 
+// yo sabai chai user le login gareko actions haru ho user le login or logout pachi ko state chai kasto change vayo vanera dhekauna
+
 // login action
 const loginAction = (datas) => async (dispatch) => {
   try {

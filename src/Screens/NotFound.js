@@ -12,8 +12,8 @@ function NotFound() {
       />
       <h1 className="lg:text-4xl font-bold">Page Not Found</h1>
       <p className="font-medium text-border italic leading-6">
-        The page you are looking for does not exist. You may have mistyped the
-        URL
+        The page you are looking for is not available
+    
       </p>
       <Link
         to="/"

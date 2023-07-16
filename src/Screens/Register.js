@@ -109,7 +109,7 @@ function Register() {
             }
           </button>
           <p className="text-center text-border">
-            Already have an account?{" "}
+            Already have account?{" "}
             <Link to="/login" className="text-dryGray font-semibold ml-2">
               Sign In
             </Link>

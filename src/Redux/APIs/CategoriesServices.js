@@ -6,7 +6,6 @@ const getCategoriesService = async () => {
   return data;
 };
 
-// ************** ADMIN APIs ***************
 
 // create new category API function
 const createCategoryService = async (title, token) => {

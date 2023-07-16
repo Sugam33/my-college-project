@@ -1,5 +1,7 @@
 import * as CategoriesConstants from '../Constants/CategoriesConstants';
 
+// category ko lagi reducer 
+
 // GET ALL CATEGORIES
 export const getAllCategoriesReducer = (state = { categories: [] }, action) => {
     switch (action.type) {

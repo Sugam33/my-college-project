@@ -29,11 +29,11 @@ function MoviesPage() {
   const [language, setLanguage] = useState(LanguageData[0]);
   const sameClass =
     "text-white py-2 px-4 rounded font-semibold border-2 border-subMain hover:bg-subMain";
-  // all movies
+  // sabai movies
   const { isLoading, isError, movies, pages, page } = useSelector(
     (state) => state.getAllMovies
   );
-  // get all categories
+  // sabai categories
   const { categories } = useSelector((state) => state.categoryGetAll);
 
   // queries
@@ -51,15 +51,15 @@ function MoviesPage() {
 
   // useEffect
   useEffect(() => {
-    // errors
+    // errors ko lagi
     if (isError) {
       toast.error(isError);
     }
-    // get all movies
+    // sabai movies
     dispatch(getAllMoviesAction(queries));
   }, [dispatch, isError, queries]);
 
-  // pagination next and pev pages
+  // next page haru ma lagna 
   const nextPage = () => {
     dispatch(
       getAllMoviesAction({

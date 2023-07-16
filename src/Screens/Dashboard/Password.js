@@ -16,7 +16,7 @@ function Password() {
     (state) => state.userchangepassword
   );
 
-  // validate user
+  //  user validate garney yup bata
   const {
     register,
     handleSubmit,

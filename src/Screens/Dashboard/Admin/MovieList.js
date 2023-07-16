@@ -52,7 +52,7 @@ function MoviesList() {
     }
   }, [dispatch, isError, deleteError, allError]);
 
-  // pagination next and pev pages
+  // next ra previous page haru jana lai
   const nextPage = () => {
     dispatch(
       getAllMoviesAction({

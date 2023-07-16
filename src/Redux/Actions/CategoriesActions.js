@@ -3,6 +3,8 @@ import * as categoriesAPIs from "../APIs/CategoriesServices";
 import toast from "react-hot-toast";
 import { ErrorsAction, tokenProtection } from "../Protection";
 
+// yo sabai chai category actions haru ho category ko state chai kasto change vayo vanera dhekauna
+
 // Get all Categories action
 export const getAllCategoriesAction = () => async (dispatch) => {
   try {

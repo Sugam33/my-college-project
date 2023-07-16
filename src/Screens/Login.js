@@ -20,7 +20,7 @@ function Login() {
     (state) => state.userLogin
   );
 
-  // validate user
+  // for user validation
   const {
     register,
     handleSubmit,
@@ -88,7 +88,7 @@ function Login() {
             className="bg-subMain transitions hover:bg-main flex-rows gap-4 text-white p-4 rounded-lg w-full"
           >
             {
-              // if loading show loading
+              // if loading vairacha vane show loading
               isLoading ? (
                 "Loading..."
               ) : (

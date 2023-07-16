@@ -1,5 +1,7 @@
 import * as moviesConstants from "../Constants/MoviesConstants";
 
+// movie haruko lagi reducer function
+
 // GET ALL MOVIES
 export const moviesListReducer = (state = { movies: [] }, action) => {
   switch (action.type) {
