@@ -74,7 +74,7 @@ function NavBar() {
             <NavLink
               to={
                 userInfo?.isAdmin
-                  ? "/dashboard"
+                  ? "/movieslist"
                   : userInfo
                   ? "/profile"
                   : "/login"

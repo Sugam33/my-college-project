@@ -64,7 +64,7 @@ function WatchPage() {
         {/* watch video */}
         {play ? (
           <video controls autoPlay={play} className="w-full h-full rounded">
-            <source src={movie?.video} type="video/mp4" title={movie?.name} />
+            <source src="/images/movie.mp4" type="video/mp4" title={movie?.name} />
           </video>
         ) : (
           <div className="w-full h-screen rounded-lg overflow-hidden relative">
