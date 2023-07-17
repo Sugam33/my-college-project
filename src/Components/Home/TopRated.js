@@ -28,7 +28,7 @@ const SwiperTop = ({ prevEl, nextEl, movies }) => {
       navigation={{ nextEl, prevEl }}
       autoplay={true}
       speed={1000}
-      loop={true}
+   //   loop={true}
       modules={[Navigation, Autoplay]}
       breakpoints={{
         0: {
@@ -53,11 +53,7 @@ const SwiperTop = ({ prevEl, nextEl, movies }) => {
         <SwiperSlide key={index}>
           <div className="p-4 h-rate hovered border border-border bg-dry rounded-lg overflow-hidden">
             <img
-              src={
-                movie?.titleImage
-                  ? `/images/movies/${movie.titleImage}`
-                  : "/images/user.jpg"
-              }
+              src={movie?.titleImage ? movie.titleImage : "/images/user.jpg"}
               alt={movie?.name}
               className="w-full h-full object-cover rounded-lg"
             />
