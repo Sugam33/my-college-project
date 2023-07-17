@@ -2,7 +2,7 @@ import * as moviesConstants from "../Constants/MoviesConstants";
 
 // movie haruko lagi reducer function
 
-// GET ALL MOVIES
+// Get all movies
 export const moviesListReducer = (state = { movies: [] }, action) => {
   switch (action.type) {
     case moviesConstants.MOVIES_LIST_REQUEST:
@@ -22,7 +22,7 @@ export const moviesListReducer = (state = { movies: [] }, action) => {
   }
 };
 
-// GET RANDOM MOVIES
+// Get random movies
 export const moviesRandomReducer = (state = { movies: [] }, action) => {
   switch (action.type) {
     case moviesConstants.MOVIES_RANDOM_REQUEST:
@@ -36,7 +36,7 @@ export const moviesRandomReducer = (state = { movies: [] }, action) => {
   }
 };
 
-// GET MOVIE BY ID
+// Get movie by ID
 export const movieDetailsReducer = (state = { movie: {} }, action) => {
   switch (action.type) {
     case moviesConstants.MOVIE_DETAILS_REQUEST:
@@ -52,7 +52,7 @@ export const movieDetailsReducer = (state = { movie: {} }, action) => {
   }
 };
 
-// GET TOP RATED MOVIES
+// Get top rated movies
 export const movieTopRatedReducer = (state = { movies: [] }, action) => {
   switch (action.type) {
     case moviesConstants.MOVIE_TOP_RATED_REQUEST:
@@ -66,7 +66,7 @@ export const movieTopRatedReducer = (state = { movies: [] }, action) => {
   }
 };
 
-// CREATE REVIEW
+// Create review
 export const createReviewReducer = (state = {}, action) => {
   switch (action.type) {
     case moviesConstants.CREATE_REVIEW_REQUEST:
@@ -82,7 +82,7 @@ export const createReviewReducer = (state = {}, action) => {
   }
 };
 
-// DELETE MOVIE
+// Delete movie
 export const deleteMovieReducer = (state = {}, action) => {
   switch (action.type) {
     case moviesConstants.DELETE_MOVIE_REQUEST:
@@ -96,7 +96,7 @@ export const deleteMovieReducer = (state = {}, action) => {
   }
 };
 
-// DELETE ALL MOVIES
+// Delete all movies
 export const deleteAllMoviesReducer = (state = {}, action) => {
   switch (action.type) {
     case moviesConstants.DELETE_ALL_MOVIES_REQUEST:
@@ -107,5 +107,45 @@ export const deleteAllMoviesReducer = (state = {}, action) => {
       return { isLoading: false, isError: action.payload };
     default:
       return state;
+  }
+};
+
+// Create mopvie
+export const createMovieReducer = (state = {}, action) => {
+  switch (action.type) {
+    case moviesConstants.CREATE_MOVIE_REQUEST:
+      return { isLoading: true };
+    case moviesConstants.CREATE_MOVIE_SUCCESS:
+      return { isLoading: false, isSuccess: true };
+    case moviesConstants.CREATE_MOVIE_FAIL:
+      return { isLoading: false, isError: action.payload };
+    case moviesConstants.CREATE_MOVIE_RESET:
+      return {};
+    default: 
+      return state;
+  }
+}
+
+// for casts
+export const castsReducer = (state = { casts: [] }, action) => {
+  switch (action.type) {
+    case moviesConstants.ADD_CAST:
+      return { casts: [...state.casts, action.payload] };
+    case moviesConstants.EDIT_CAST:
+      const updateCasts = state.casts.map((cast) => 
+        cast.id === action.payload.id ? action.payload : cast
+      );
+    return {
+      casts: updateCasts,
+    };
+    case moviesConstants.DELETE_CAST:
+      return {
+        ...state,
+        casts: state.casts.filter((cast) => cast.id !== action.payload)
+      };
+      case moviesConstants.RESET_CAST:
+        return { casts: [] };
+      default:
+        return state;
   }
 };

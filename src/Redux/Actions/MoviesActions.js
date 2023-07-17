@@ -138,3 +138,23 @@ export const deleteAllMoviesAction = () => async (dispatch, getState) => {
     ErrorsAction(error, dispatch, moviesConstants.DELETE_ALL_MOVIES_FAIL);
   }
 };
+
+// create movie action
+export const createMovieAction = (movie) => async (dispatch, getState) => {
+    try {
+      dispatch({ type: moviesConstants.CREATE_MOVIE_REQUEST });
+      const response = await moviesAPIs.createMovieFunction(
+        tokenProtection(getState),
+        movie
+      );
+      dispatch({
+        type: moviesConstants.CREATE_MOVIE_SUCCESS,
+        payload: response,
+      });
+      toast.success("Movie created");
+      // dispatch(getAllMoviesAction({}));
+    }
+    catch (error) {
+      ErrorsAction(error, dispatch, moviesConstants.CREATE_MOVIE_FAIL);
+    }
+}

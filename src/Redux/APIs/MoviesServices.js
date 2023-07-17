@@ -1,5 +1,7 @@
 import Axios from "./Axios";
 
+// yo chai Axios bata api call garna ko lagi
+
 // get all movies function
 export const getAllMoviesService = async (
   category,
@@ -34,7 +36,7 @@ export const getTopRatedMovieService = async () => {
   return data;
 };
 
-// review movie Function
+// review movie function
 export const reviewMovieService = async (token, id, review) => {
   const { data } = await Axios.post(`/movies/${id}/reviews`, review, {
     headers: {
@@ -44,7 +46,7 @@ export const reviewMovieService = async (token, id, review) => {
   return data;
 };
 
-// delete movie Function
+// delete movie function
 export const deleteMovieService = async (token, id) => {
     const { data } = await Axios.delete(`/movies/${id}`, {
       headers: {
@@ -60,6 +62,16 @@ export const deleteAllMoviesService = async (token) => {
     headers: {
       Authorization: `Bearer ${token}`,
     }
+  });
+  return data;
+}
+
+// create movie functiom
+export const createMovieFunction = async (token, movie) => {
+  const { data } = await Axios.post(`/movies`, movie, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
   return data;
 }
