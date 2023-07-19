@@ -139,7 +139,6 @@ const createMovieReview = asyncHandler(async(req, res) => {
     }
 });
 
-// ***************** ADMIN CONTROLLERS **************** 
 
 // Update movie,   route - PUT /api/movies/:id
 const updateMovie = asyncHandler(async(req, res) => {

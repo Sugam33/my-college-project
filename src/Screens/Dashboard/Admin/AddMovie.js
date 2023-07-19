@@ -196,7 +196,7 @@ function AddMovie() {
           <div className={`w-full grid ${videoUrl && "md:grid-cols-2"} gap-6`}>
             {videoUrl && (
               <div className="w-full bg-main text-sm text-subMain py-4 border border-border rounded flex-colo">
-                Video Uploaded!!!
+                Video Uploaded
               </div>
             )}
             <Uploder setImageUrl={setVideoUrl} />

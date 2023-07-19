@@ -16,7 +16,7 @@ const MovieValidation = yup.object().shape({
   year: yup.number().required("Enter the year of movie release"),
   category: yup.string().required("Enter the category of movie"),
   desc: yup.string().required("Enter movie descripton")
-  .max(300, "Desciption should be less than 300 characters"),
+  .max(800, "Desciption should be less than 300 characters"),
 });
 
 export { ReviewValidation, MovieValidation };

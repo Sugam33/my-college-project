@@ -46,7 +46,7 @@ function Uploder({ setImageUrl }) {
               ? "Drop the image"
               : isDragReject
               ? "Unsupported file type..."
-              : "only .jpg and .png files will be accepted"}
+              : "Add Image"}
           </em>
         </div>
       )}
